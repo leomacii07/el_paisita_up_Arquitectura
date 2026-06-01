@@ -1,19 +1,25 @@
 package com.el_paisita_Up.inventario.model;
 
-import jakarta.persistence.*;
-import lombok.Data; // Esto es lo que genera los "setters"
-import java.time.LocalDateTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "ventas")
-@Data // <--- Revisa que esta línea esté escrita así
+@Data // Esto genera automáticamente los get y set que te hacen falta
 public class Venta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    private String productoNombre; // Debe ser igual en el Controller
-    private Integer cantidad;      // Debe ser igual en el Controller
-    private Double total;          // Debe ser igual en el Controller
-    private LocalDateTime fechaVenta = LocalDateTime.now();
+
+    @Column(name = "producto_nombre")
+    private String productoNombre;
+
+    private Integer cantidad;
+    private Double total;
 }
